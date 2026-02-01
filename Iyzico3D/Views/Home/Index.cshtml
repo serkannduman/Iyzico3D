@@ -1,3 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Ana Sayfa";
 }
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-4 m-auto">
+            <div class="border p-3 rounded-3">
+                <h3>Kart Bilgileri</h3>
+                <hr />
+                <form method="post" id="payment-form">
+                    <div d-flex flex-column gap-3>
+                        <input type="hidden" name="installment" value="1"/>
+                        <div>
+                            <label for="">Ad Soyad</label>
+                            <input type="text" name="CardHolderName" id="cardHolder" class="form-control"/>
+                        </div>
+                        <div>
+                            <label for="">Kart Numarası</label>
+                            <input type="text" name="CardNumber" id="cardNumber" class="form-control" maxlength="19" placeholder="XXXX XXXX XXXX XXXX"/>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row gap-2">
+                            <div>
+                                <label for="">Ay</label>
+                                <input type="text" name="ExpireMonth" id="expireMonth" class="form-control" maxlength="2" placeholder="XX"/>
+                            </div>
+                            <div>
+                                <label for="">Yıl (Son 2 hane)</label>
+                                <input type="text" name="ExpireYear" id="expireYear" class="form-control" maxlength="2" placeholder="XX" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="">Cvv</label>
+                            <input type="text" name="Cvv" id="cvv" class="form-control" maxlength="4"/>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-0"><b>Tutar : </b></p>
+                        <p class="mb-0" id="price-text" data-price="1250">1.250,00 TL</p>
+                    </div>
+                    <hr />
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-light w-100" onclick="clearForm()">Temizle</button>
+                        <button type="button" class="btn btn-primary w-100" onclick="payButton(this)">Ödeme Yap</button>
+                    </div>
+                </form>
+
+                <div class="alert alert-danger mt-3 d-none"></div>
+                <hr />
+                <div>
+                    <button type="button" class="btn btn-link w-100" onclick="getInstallment(this)">Taksit Oranlarını Gör</button>
+                </div>
+                <div id="installment-table-container" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
