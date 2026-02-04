@@ -1,7 +1,20 @@
+using Iyzico3D.Data;
+using Iyzico3D.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IOrderRepository,OrderRepository>();
+
+builder.Services.Configure<IyzicoSettings>(
+    builder.Configuration.GetSection("IyzicoSettings"));
+
+builder.Services.AddDbContext<IyzicoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

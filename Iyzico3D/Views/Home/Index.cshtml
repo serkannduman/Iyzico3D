@@ -30,8 +30,8 @@
                             </div>
                         </div>
                         <div>
-                            <label for="">Cvv</label>
-                            <input type="text" name="Cvv" id="cvv" class="form-control" maxlength="4"/>
+                            <label for="">Cvc</label>
+                            <input type="text" name="Cvc" id="cvc" class="form-control" maxlength="4"/>
                         </div>
                     </div>
                     <hr />
@@ -56,3 +56,42 @@
         </div>
     </div>
 </div>
+
+<script>
+    async function payButton(button) {
+        button.disabled = true;
+        button.textContext = "Ödeme Yapılıyor...";
+
+        const form = document.getElementById("payment-form");
+        const formData = new FormData(form);
+
+        try {
+            const url = "/home/payment";
+            let response = await fetch(url, {
+                method: "POST",
+                body: formData
+            });
+
+            let result = await response.json();
+            if (result.success) {
+                document.open();
+                document.write(result.htmlContent);
+                document.close();
+            } else {
+                const alertBox = document.querySelector(".alert");
+                alertBox.textContent = result.message;
+                alertBox.classList.remove("d-none");
+                setTimeout(() => alertBox.classList.add("d-none"), 3000);
+            }
+        } catch (error) {
+            alertBox.textContent = "Bir hata oluştu. Lütfen tekrar deneyiniz.";
+            alertBox.classList.remove("d-none");
+            setTimeout(() => alertBox.classList.add("d-none"), 3000);
+        }
+
+        finally {
+            button.disabled = false;
+            button.textContent = "Ödeme Yap";
+        }
+    }
+</script>
