@@ -18,8 +18,8 @@ namespace Iyzico3D.Models
 
         public PaymentCard PaymentCard { get; set; }
         public Buyer Buyer { get; set; }
-        public Address ShippingAddress { get; set; }
-        public Address BillingAddress { get; set; }
+        public ShippingAddress ShippingAddress { get; set; }
+        public BillingAddress BillingAddress { get; set; }
 
         public List<BasketItem> BasketItems { get; set; }
 
@@ -51,9 +51,17 @@ namespace Iyzico3D.Models
         public string ZipCode { get; set; }
         public string Ip { get; set; }
     }
-    public class Address
+    public class ShippingAddress
     {
-        public string AddressLine { get; set; }   // JSON: address
+        public string Address { get; set; }   // JSON: address
+        public string ZipCode { get; set; }
+        public string ContactName { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+    }
+    public class BillingAddress
+    {
+        public string Address { get; set; }   // JSON: address
         public string ZipCode { get; set; }
         public string ContactName { get; set; }
         public string City { get; set; }

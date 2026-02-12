@@ -2,15 +2,13 @@
 
 namespace Iyzico3D.Models
 {
-    public class PaymentResponse
+    public class PaymentCompletionResponse
     {
         [JsonPropertyName("status")]
         public string? Status { get; set; }
-        [JsonPropertyName("threeDSHtmlContent")]
-        public string? ThreeDSHtmlContent { get; set; }
-        [JsonPropertyName("errorMessage")]
-        public string? ErrorMessage { get; set; }
         [JsonPropertyName("errorCode")]
         public string? ErrorCode { get; set; }
+        [JsonPropertyName("errorMessage")]
+        public string? ErrorMessage { get; set; }
     }
 }
